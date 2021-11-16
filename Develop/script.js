@@ -42,17 +42,21 @@ var generateBtn = document.querySelector("#generate");
 
 //random number generator
 //var passwordChar
-//for (let i=0; i< optionsLength; i++) {
-//  var index = [Math.floor(Math.random()* optionsLength)]
-//  passwordChar.push(character) 
 //}
 
-//function generatePassword(){
+function generatePassword(){
+  for (let i=0; i< optionsLength; i++) {
+      var index = [Math.floor(Math.random()* optionsLength)]
+      password = password + choiceArr[index];
+  }
+  return password;
+      
+}
 
-//}
 
 // Write password to the #password input
 function writePassword() {
+  
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
