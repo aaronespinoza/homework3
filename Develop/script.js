@@ -7,7 +7,7 @@ var optionsUpper = ["A","B","C","D","E","F","G","H","I","J","L","L","M","N","O",
 var optionsSpec = ["!","@","#","%","&"];
 var generateBtn = document.querySelector("#generate");
 
-
+generateBtn.addEventListener("click", writePassword);
 
 //create prompt for number of characters in password
 //create alert if password length number entered was lower than 8
@@ -41,10 +41,10 @@ function characterLength (){
 
 }
 
-generateBtn.addEventListener("click", characterLength);
 
 
-var generateBtn = document.querySelector("#generate");
+
+
 //generateBtn.textContent = "";
 //generateBtn.appendChild()
 
@@ -60,7 +60,7 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword(){
   var password = "";
-  for (let i=0; i< optionsLength; i++) {
+  for (var i=0; i< optionsLength; i++) {
       var index = [Math.floor(Math.random()* optionsLength)]
       password = password + optionsArray[index];
   }
@@ -73,9 +73,9 @@ function generatePassword(){
 function writePassword() {
   var passwordText = document.querySelector("#password");
   var validInput = characterLength();
+
   if (validInput){
     var password = generatePassword();
-    
 
     passwordText.value = password;
   }
@@ -86,4 +86,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+
