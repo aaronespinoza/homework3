@@ -1,10 +1,10 @@
 // Assignment Code
 var optionsArray=[];
-var optionsLength = 8;
+var optionsLength = 10;
 var optionsNum = [0,1,2,3,4,5,6,7,8,9];
 var optionsLow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var optionsUpper = ["A","B","C","D","E","F","G","H","I","J","L","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-var optionsSpec = ["!","@","#","%","&"];
+var optionsSpec = ["~", "!", "@", "#", "$", "%", "^", "&", "*", "_", "+", "=", "<", ">", "?", ];
 var generateBtn = document.querySelector("#generate");
 
 generateBtn.addEventListener("click", writePassword);
@@ -17,43 +17,22 @@ generateBtn.addEventListener("click", writePassword);
 //prompt for uppercase
 //prompt for lowercase
 
-function characterLength (){
-  optionsArray=[];
-  optionsLength = parseInt(prompt("Enter a number between 8 and 128 for desired password length"));
+function writePassword() {
+  var correctPrompts = getPrompts();
+  var passwordText = document.querySelector("#password");
 
-  if  (isNaN(optionsLength)|| optionsLength < 8 || optionsLength> 128) {
-    alert("character length must be an integer 8-128 characters long");
-    return false;
+  if (correctPrompts) {
+      var Password = generatePassword();
+      passwordText.value = Password;
+  } else {
+      passwordText.value = "";
   }
-  if(confirm("Do you want numbers in your password")) {
-    optionsArray = optionsArray.concat(optionsNum);
-  }
-  if(confirm("Do you want lower case letters in your password")) {
-    optionsArray = optionsArray.concat(optionsLow);
-  }
-  if(confirm("Do you want upper case letters in your password")) {
-    optionsArray = optionsArray.concat(optionsUpper);
-  }
-  if(confirm("Do you want special characters in your password")) {
-    optionsArray = optionsArray.concat(optionsSpec);
-  }
-  return true;
-
 }
-
-
-
-
 
 //generateBtn.textContent = "";
 //generateBtn.appendChild()
-
 //window.alert("Your password is" + writePassword);
-
 //var generateBtn = window.prompt("");
-
-
-
 //random number generator
 //var passwordChar
 //}
@@ -61,28 +40,45 @@ function characterLength (){
 function generatePassword(){
   var password = "";
   for (var i=0; i< optionsLength; i++) {
-      var index = [Math.floor(Math.random()* optionsLength)]
-      password = password + optionsArray[index];
+      var random = [Math.floor(Math.random()* optionsArray.length)]
+      password = password + optionsArray[random];
   }
   return password;
       
 }
 
+function getPrompts() {
+  optionsArray = [];
+  optionsLength = parseInt(prompt("Select how many numbers you'd like to have, between 8-128"));
 
-// Write password to the #password input
-function writePassword() {
-  var passwordText = document.querySelector("#password");
-  var validInput = characterLength();
-
-  if (validInput){
-    var password = generatePassword();
-
-    passwordText.value = password;
+  if (isNaN(charLength) || charLength < 8 || charLength > 128) {
+      alert("Before continuing, please input a number between 8 - 128.");
+      return false;
   }
-  else{
-    passwordText.value="";
-  }
-
+  else {
+    confirmSpecial = confirm("Would you like the password to contain Special Characters?");
+    confirmNum = confirm("Would you like the password to contain Numbers?");
+    confirmUpper = confirm("Would you like the password to contain Uppercase Letters?");
+    confirmLower = confirm("Would you like the password to contain Lowercase Letters?");
+};
+// If no parameters were specified then alert
+if (!confirmSpecial && !confirmNum && !confirmUpper && !confirmLower) {
+    alert("There were no selected options.");
+    return false;
+}
+if (confirmSpecial) {
+    userChoicePush(special)
+}
+if (confirmNum) {
+    userChoicePush(numbers)
+}
+if (confirmUpper) {
+    userChoicePush(upper)
+}
+if (confirmLower) {
+    userChoicePush(lower)
+}
+return true;
 }
 
 // Add event listener to generate button
