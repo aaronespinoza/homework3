@@ -6,6 +6,10 @@ var optionsLow = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p
 var optionsUpper = ["A","B","C","D","E","F","G","H","I","J","L","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var optionsSpec = ["~", "!", "@", "#", "$", "%", "^", "&", "*", "_", "+", "=", "<", ">", "?", ];
 var generateBtn = document.querySelector("#generate");
+var confirmSpec;
+var confirmNum;
+var confirmUpper;
+var confirmLow;
 
 generateBtn.addEventListener("click", writePassword);
 
@@ -51,34 +55,40 @@ function getPrompts() {
   optionsArray = [];
   optionsLength = parseInt(prompt("Select how many numbers you'd like to have, between 8-128"));
 
-  if (isNaN(charLength) || charLength < 8 || charLength > 128) {
+  if (isNaN(optionsLength) || optionsLength < 8 || optionsLength > 128) {
       alert("Before continuing, please input a number between 8 - 128.");
       return false;
   }
   else {
-    confirmSpecial = confirm("Would you like the password to contain Special Characters?");
+    confirmSpec = confirm("Would you like the password to contain Special Characters?");
     confirmNum = confirm("Would you like the password to contain Numbers?");
     confirmUpper = confirm("Would you like the password to contain Uppercase Letters?");
-    confirmLower = confirm("Would you like the password to contain Lowercase Letters?");
+    confirmLow = confirm("Would you like the password to contain Lowercase Letters?");
 };
 // If no parameters were specified then alert
-if (!confirmSpecial && !confirmNum && !confirmUpper && !confirmLower) {
+if (!confirmSpec && !confirmNum && !confirmUpper && !confirmLow) {
     alert("There were no selected options.");
     return false;
 }
-if (confirmSpecial) {
-    userChoicePush(special)
+if (confirmSpec) {
+    optionsPush(optionsSpec)
 }
 if (confirmNum) {
-    userChoicePush(numbers)
+    optionsPush(optionsNum)
 }
 if (confirmUpper) {
-    userChoicePush(upper)
+    optionsPush(optionsUpper)
 }
-if (confirmLower) {
-    userChoicePush(lower)
+if (confirmLow) {
+    optionsPush(optionsLow)
 }
 return true;
+}
+
+function optionsPush(array) {
+  for (var i = 0; i < array.length; i++) {
+      optionsArray.push(array[i])
+  }
 }
 
 // Add event listener to generate button
