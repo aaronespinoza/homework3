@@ -11,4 +11,5 @@ https://aaronespinoza.github.io/password-generator/
 https://github.com/aaronespinoza/password-generator
 
 ##Screenshots
-<img width="1424" alt="Screen Shot 2022-01-30 at 1 58 25 PM" src="https://user-images.githubusercontent.com/92828704/151719557-d0aae53b-ab6f-4f86-be4d-a8c59a04a93f.png">
+<img width="1428" alt="Screen Shot 2022-01-30 at 2 00 31 PM" src="https://user-images.githubusercontent.com/92828704/151719645-5e6468c2-6341-4201-bdb2-67506ea286ea.png">
+
